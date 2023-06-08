@@ -58,9 +58,22 @@ const validateToken = async (token)=>{
     }
 }
 
+const updateUserCurrency = async (id, newCurrency)=>{
+    try {
+        if(!id && !newCurrency) throw new Error('Fields are required');
+        const userFound = await User.findById(id);
+        if (!userFound) throw new Error('User not found');
+        userFound.currency = newCurrency;
+        return await userFound.save();
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     createUser,
     loginUser,
     getUserByDNI,
-    validateToken
+    validateToken,
+    updateUserCurrency
 }

@@ -11,8 +11,8 @@ const createUser = async (req, res, next)=>{
 
 const loginUser = async (req, res, next)=>{
     try {
-        const user = await authService.loginUser(req.body);
-        res.status(200).json({user});
+        const token = await authService.loginUser(req.body);
+        res.status(200).json({token});
     } catch (error) {
         next(error);
     }

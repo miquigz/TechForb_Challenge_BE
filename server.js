@@ -1,6 +1,7 @@
 const apiv1 = '/api/v1';
 require('dotenv').config();
 const DB = require('./config/db');
+const cors = require('cors');
 
 DB();
 
@@ -12,6 +13,7 @@ const exceptionHandler = require('./middlewares/exception');
 const app = express();
 
 //Middlewares
+app.use(cors()); //allow all domains: access to the API (only dev)
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));

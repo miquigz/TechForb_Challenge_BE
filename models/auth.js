@@ -29,7 +29,6 @@ const UserSCHEMA = new mongoose.Schema({
     },
     currency:{
         type: Number,
-        required: true,
         default: 0
     },
     cbu: {

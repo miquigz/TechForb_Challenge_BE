@@ -1,8 +1,13 @@
+require('dotenv').config();
 const express = require('express');
+const DB = require('./config/db');
+const mongoose = require('mongoose');
+
+DB();
 
 const app = express();
 
-const port = 3000; // Puedes elegir el número de puerto que desees
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Servidor en ejecución en el puerto ${port}`);
 });

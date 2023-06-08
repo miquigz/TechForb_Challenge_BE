@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MenuItemSCHEMA = new mongoose.Schema({
+const TransactionSCHEMA = new mongoose.Schema({
     toCBU:{
         type: String,
         required: true,
@@ -17,10 +17,15 @@ const MenuItemSCHEMA = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    state:{
+        type: String,
+        required: true,
+        enum: ['ACCEPTED', 'REJECTED', 'PENDING']
+    },
     reason:{
         type: String,
         required: false,
         trim: true
     }
 });
-module.exports = mongoose.model('MenuItem', MenuItemSCHEMA);
+module.exports = mongoose.model('Transaction', TransactionSCHEMA);

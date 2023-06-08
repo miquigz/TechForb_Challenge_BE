@@ -1,6 +1,6 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const User = require('../models/auth');
 const config = process.env;
 
 const createUser = async (user)=>{
@@ -52,7 +52,7 @@ const validateToken = async (token)=>{
         const decoded = jwt.verify(token, config.JWT_SECRET);
         if (!decoded) throw new Error('Invalid token');
         console.log('decoded', decoded);
-        res.send(await getUserByDNI(decoded.id));
+        return await getUserByDNI(decoded.id);
     } catch (error) {
         throw error;
     }

@@ -21,7 +21,7 @@ const loginUser = async (req, res, next)=>{
 const validateToken = async (req, res, next)=>{
     try {
         const user = await authService.validateToken(req.params.token);
-        res.status(200).json({user});
+        return res.status(200).json({user});
     } catch (error) {
         next(error);
     }

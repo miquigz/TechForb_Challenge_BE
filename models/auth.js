@@ -17,7 +17,7 @@ const UserSCHEMA = new mongoose.Schema({
         required: true,
     },
     documentNumber:{
-        type: String,
+        type: Number,
         required: true,
         trim: true,
         unique:true

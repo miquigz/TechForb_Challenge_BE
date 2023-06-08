@@ -6,6 +6,8 @@ DB();
 
 const express = require('express');
 const routerAuth = require('./routes/auth.routes');
+const routerMenuItem = require('./routes/menu-item.routes');
+const routerTransaction = require('./routes/transaction.routes');
 const exceptionHandler = require('./middlewares/exception');
 const app = express();
 
@@ -17,9 +19,8 @@ app.use(express.static('public'));
 
 //Routes
 app.use(`${apiv1}/auth` ,routerAuth);
-
-
-
+app.use(`${apiv1}/menu-item`, routerMenuItem);
+app.use(`${apiv1}/transaction`, routerTransaction);
 
 
 

@@ -38,7 +38,10 @@ const searchUserByDNI = async (req, res, next)=>{
 
 const getUserInfo = async (req, res, next)=>{
     try {
-        const user = await authService.getUserByToken(req.params.token);
+        console.log('req headers', req.headers)
+        console.log('token', req.headers['x-access-token']);
+
+        const user = await authService.getUserByToken(req.headers['x-access-token']);
         res.status(200).json({user});
     } catch (error) {
         next(error);

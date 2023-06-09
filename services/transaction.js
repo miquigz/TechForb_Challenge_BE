@@ -1,6 +1,7 @@
 const Transaction = require('../models/transaction');
 const User = require('../models/auth');
 const { updateUserCurrency } = require('./auth');
+const { filterTransactionsByMonth } = require('../helpers/transactionUtils');
 
 const getTransactions = async () => {
     try {
@@ -35,8 +36,19 @@ const deleteTransaction = async (id) => {
     }
 }
 
+const transactionsByUserLastMonth = async (cbu) => {
+    return await filterTransactionsByMonth(cbu, -1);
+}
+
+const transactionsByUserActualMonth = async (cbu) => {
+    return await filterTransactionsByMonth(cbu, 0);
+}
+
+
 module.exports = {
     getTransactions,
     createTransaction,
-    deleteTransaction
+    deleteTransaction,
+    transactionsByUserLastMonth,
+    transactionsByUserActualMonth
 }

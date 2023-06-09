@@ -46,6 +46,18 @@ const getUserByDNI = async (documentNumber)=>{
     }
 }
 
+const getUserByToken = async (token)=>{
+    try {
+        if(!token) throw new Error('Token not found');
+        const decoded = jwt.verify(token, config.JWT_SECRET);
+        if (!decoded) throw new Error('Invalid token');
+        console.log('decoded', decoded);
+        return await getUserByDNI(decoded.id);
+    } catch (error) {
+        throw error;
+    }
+}
+
 const validateToken = async (token)=>{
     try {
         if(!token) throw new Error('Token not found');
@@ -75,5 +87,6 @@ module.exports = {
     loginUser,
     getUserByDNI,
     validateToken,
-    updateUserCurrency
+    updateUserCurrency,
+    getUserByToken
 }

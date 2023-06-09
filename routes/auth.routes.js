@@ -8,5 +8,6 @@ routerAuth.post('/login', authController.loginUser);
 
 routerAuth.get('/validate-token/:token', authController.validateToken);
 routerAuth.get('/search-user/:dni', authController.searchUserByDNI);
+routerAuth.get('/info/:token', authController.getUserInfo);
 
 module.exports = routerAuth;

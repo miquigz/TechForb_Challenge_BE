@@ -10,6 +10,7 @@ const routerAuth = require('./routes/auth.routes');
 const routerMenuItem = require('./routes/menu-item.routes');
 const routerTransaction = require('./routes/transaction.routes');
 const routerExtraction = require('./routes/extraction.routes');
+const routerDev = require('./routes/only-dev.routes');
 const exceptionHandler = require('./middlewares/exception');
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(`${apiv1}/auth` ,routerAuth);
 app.use(`${apiv1}/menu-item`, routerMenuItem);
 app.use(`${apiv1}/transaction`, routerTransaction);
 app.use(`${apiv1}/extraction`, routerExtraction);
+app.use(`${apiv1}/dev`, routerDev);
 
 
 app.use(exceptionHandler);

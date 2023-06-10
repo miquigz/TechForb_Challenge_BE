@@ -27,10 +27,41 @@ const deleteTransaction = async (req, res, next) => {
     }
 }
 
+const transactionsByUserLastMonth = async (req, res, next) => {
+    try {
+        const transactions = await transactionService.transactionsByUserLastMonth(req.params.cbu);
+        res.status(200).json(transactions);
+    } catch (error) {
+        next(error);
+    }
+}
+
+const transactionsByUserActualMonth = async (req, res, next) => {
+    try {
+        const transactions = await transactionService.transactionsByUserActualMonth(req.params.cbu);
+        res.status(200).json(transactions);
+    } catch (error) {
+        next(error);
+    }
+}
+
+const compareUserMonthsTransactions = async (req, res, next) => {
+    try {
+        console.log(req.query.outcome)
+        const transactions = await transactionService.compareUserMonthsTransactions(req.params.cbu, req.query.outcome);
+        res.status(200).json(transactions);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     getTransactions,
     createTransaction,
-    deleteTransaction
+    deleteTransaction,
+    transactionsByUserLastMonth,
+    transactionsByUserActualMonth,
+    compareUserMonthsTransactions
 }
 
 

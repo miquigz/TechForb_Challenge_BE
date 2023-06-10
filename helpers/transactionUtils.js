@@ -6,7 +6,7 @@ const filterTransactionsByMonth = async (cbu, monthOffset) => {
         const transactions = await Transaction.find({ $or: [{ fromCBU: cbu }, { toCBU: cbu }] });
         // console.log('trans:', transactions)
         const today = new Date();
-        const targetDate = new Date(today.getFullYear(), today.getMonth() + monthOffset);
+        const targetDate = new Date(today.getFullYear(), today.getMonth() + monthOffset);//desplazamiento
         console.log(targetDate)
         
         return transactions.filter(transaction => {

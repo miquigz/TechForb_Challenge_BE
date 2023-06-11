@@ -25,7 +25,7 @@ const createUser = async (user)=>{
 const loginUser = async (user)=>{
     try {
         if(!user) throw new Error('Fields are required');
-        const userFound = await User.findOne({documentNumber: user.documentNumber});
+        const userFound = await User.findOne({documentNumber: user.documentNumber}).maxTimeMS(25000);
         if (!userFound) throw new Error('User not found');
         const isMatch = await bcrypt.compare(user.password, userFound.password);
         if (!isMatch) throw new Error('Invalid credentials');

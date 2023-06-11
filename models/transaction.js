@@ -11,12 +11,10 @@ const TransactionSCHEMA = new mongoose.Schema({
     },
     fromCBUfullname:{
         type: String,
-        required: true,
         trim: true
     },
     toCBUfullname:{
         type: String,
-        required: true,
         trim: true
     },
     amount:{

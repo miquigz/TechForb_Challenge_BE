@@ -47,12 +47,12 @@ routerDev.get('/fill/menu-items', async (req, res) => {
     }
 });
 
-routerDev.get('fill/extractions', async (req, res) => {
+routerDev.get('fill/extractions/:cbu', async (req, res) => {
     try {
         const extractions = [];
         for (let i = 0; i < 25; i++) {
             const extraction = {
-                CBU: faker.finance.iban(),
+                CBU: req.params.cbu,
                 fullname: faker.person.fullName(),
                 amount: faker.finance.amount(),
                 description: faker.lorem.sentence(),

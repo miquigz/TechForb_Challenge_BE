@@ -89,7 +89,6 @@ const compareUserMonthsTransactions = async (cbu, outcome = false) => {
     } catch (error) {
         throw error;
     }
-
 }
 
 

@@ -1,5 +1,6 @@
 const Transaction = require('../models/transaction');
 const MenuItem = require('../models/menu-item');
+const Extraction = require('../models/extraction');
 const express = require('express');
 const routerDev = express.Router();
 
@@ -15,6 +16,8 @@ routerDev.get('/fill/transactions/:cbu', async (req, res) => {
             const transaction = {
                 fromCBU: i < 50 ? faker.finance.iban() : cbu,
                 toCBU: i < 50 ? cbu : faker.finance.iban(),
+                toCBUFullname: faker.person.fullName(),
+                fromCBUFullname: faker.person.fullName(),
                 amount: faker.finance.amount(),
                 description: faker.lorem.sentence(),
                 createdAt: faker.date.past(),
@@ -43,5 +46,27 @@ routerDev.get('/fill/menu-items', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+routerDev.get('fill/extractions', async (req, res) => {
+    try {
+        const extractions = [];
+        for (let i = 0; i < 25; i++) {
+            const extraction = {
+                CBU: faker.finance.iban(),
+                fullname: faker.person.fullName(),
+                amount: faker.finance.amount(),
+                description: faker.lorem.sentence(),
+                createdAt: faker.date.past(),
+                state: randomState()
+            }
+            extractions.push(extraction);
+        }
+        await Extraction.insertMany(extractions);
+        res.status(201).json({ message: 'Extractions created', extractions });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 
 module.exports = routerDev;

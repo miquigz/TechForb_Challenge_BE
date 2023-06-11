@@ -37,6 +37,9 @@ routerDev.get('/fill/menu-items', async (req, res) => {
         const menuItems = [
             { icon: 'fa fa-home', title: 'Inicio', path: '/home' },
             { icon: 'fa fa-credit-card', title: 'Tarjetas', path: '/home/cards' },
+            { icon: 'fa fa-exchange', title: 'Transferencias', path: '/home/transactions' },
+            { icon: 'fa fa-money', title: 'Prestamos', path: '/home/provides' },
+            { icon: 'fa fa-shield', title: 'Seguros', path: '/home/insurance' },
             { icon: 'fa fa-sign-out', title: 'Cerrar sesion', path: '/auth/signin' },
         ]
         await MenuItem.insertMany(menuItems);
